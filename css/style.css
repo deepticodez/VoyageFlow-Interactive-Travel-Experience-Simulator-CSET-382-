@@ -1,0 +1,153 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@600&display=swap');
+
+.font-playfair { font-family: 'Playfair Display', serif; }
+
+/* make the "view" containers match the single-page simulation */
+.view { display: none; padding-bottom: 48px; }
+.view.active { display: block; }
+
+/* posts card image hover */
+.post img { transition: transform 0.45s ease; }
+.post:hover img { transform: scale(1.03); }
+
+/* modal base */
+.modal { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(2,6,23,0.6); z-index: 60; padding: 16px; }
+.modal.hidden { display: none; }
+.modal-panel { width: 100%; max-width: 520px; background: linear-gradient(180deg,#071426,#04101a); border-radius: 14px; padding: 20px; border: 1px solid rgba(255,255,255,0.04); box-shadow: 0 10px 30px rgba(2,6,23,0.6); text-align: center; }
+
+/* focus outlines */
+:focus { outline: 3px solid rgba(250,204,21,0.18); outline-offset: 3px; }
+
+/* subtle button hover */
+button:hover { transform: translateY(-1px); transition: transform 0.15s ease; }
+
+/* responsive tweaks */
+@media (max-width: 640px){
+  .post img { height: 200px; object-fit: cover; }
+}
+
+/* ===== extra polish for enhanced registration page ===== */
+@keyframes fly {
+  0% { transform: translateX(0) translateY(0) rotate(0deg); opacity: 0.25; }
+  50% { transform: translateX(-18px) translateY(-8px) rotate(-8deg); opacity: 0.5; }
+  100% { transform: translateX(0) translateY(0) rotate(0deg); opacity: 0.25; }
+}
+.animate-fly { animation: fly 6s ease-in-out infinite; }
+
+/* Slight glass blur for hero section overlay */
+section.relative { background-image: radial-gradient(circle at 10% 10%, rgba(255,122,89,0.04), transparent 20%), radial-gradient(circle at 90% 80%, rgba(255,186,107,0.03), transparent 20%); }
+
+/* VF badge style helper (if used) */
+.vf-badge { background: linear-gradient(90deg, #FFB86B, #FF7A59); color:#08121a; font-weight:700; }
+
+/* subtle hover for form card */
+.bg-gradient-to-b:hover { transform: translateY(-6px); transition: transform 0.25s ease; }
+
+/* small input placeholder color override for non-tailwind inputs */
+input::placeholder { color: rgba(203,213,225,0.45); }
+
+/* Blog page animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fadeIn { animation: fadeIn 0.8s ease-out both; }
+
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fadeDown { animation: fadeDown 0.7s ease-out both; }
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(25px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-slideUp { animation: slideUp 0.9s ease-out both; }
+
+/* softer image edges */
+.post img {
+  border-radius: 0.75rem;
+  margin: 8px;
+  height: 260px;
+  object-fit: cover;
+}
+
+/* Checkbox + option styling */
+input.opt {
+  width: 18px;
+  height: 18px;
+  accent-color: #FFB86B; /* modern checkbox color */
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+input.opt:focus {
+  outline: 2px solid rgba(255,184,107,0.18);
+  outline-offset: 2px;
+}
+input.opt:checked {
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(255,184,107,0.08);
+}
+
+/* style the option text next to checkbox */
+label .opt + span,
+label span {
+  transition: color .18s ease, font-weight .18s ease, transform .18s ease;
+}
+label input.opt:checked + span {
+  color: #FFD7A1; /* lighter amber */
+  font-weight: 600;
+  transform: translateX(4px);
+}
+
+/* subtle highlight for the selected label area */
+label {
+  border-radius: 10px;
+  padding: 6px;
+}
+label:hover {
+  background: rgba(255,255,255,0.01);
+  transform: translateY(-2px);
+  transition: transform .15s ease, background .15s ease;
+}
+
+/* Glass card used for the summary */
+.glass-card {
+  background: linear-gradient(180deg, rgba(9,14,20,0.55), rgba(7,11,14,0.35));
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(255,255,255,0.04);
+}
+
+/* total count animation (tiny pulse) */
+.total-pop {
+  animation: pop 0.45s ease forwards;
+}
+@keyframes pop {
+  0% { transform: scale(0.95); opacity: 0.6; }
+  60% { transform: scale(1.06); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Thank you page celebrate */
+.celebrate-card {
+  background: linear-gradient(180deg, rgba(6,10,16,0.7), rgba(8,12,20,0.44));
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(255,255,255,0.03);
+}
+.celebrate-card .w-24 {
+  box-shadow: 0 10px 30px rgba(255,184,107,0.12);
+  transform: translateY(-6px);
+}
+
+/* small pulse on thank you header */
+@keyframes softPulse {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.02); opacity: 0.98; }
+  100% { transform: scale(1); opacity: 1; }
+}
+.celebrate-card h1 { animation: softPulse 3.5s ease-in-out infinite; }
+
+/* small utility */
+.min-h-[5rem] { min-height: 5rem; }

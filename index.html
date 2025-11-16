@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>VoyageFlow — Interactive Travel Experience Simulator</title>
+
+    <!-- Tailwind Play CDN (no build step) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Optional: Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body
+    class="bg-gradient-to-b from-slate-900 to-slate-800 text-slate-100 antialiased"
+  >
+    <div class="max-w-6xl mx-auto px-4 py-8">
+      <!-- ================= ENHANCED PAGE 1: Registration (replace existing page-register block) ================= -->
+      <main id="page-register" class="view active" aria-labelledby="regTitle">
+        <section
+          class="relative overflow-hidden rounded-3xl p-6 md:p-12"
+          style="
+            background: linear-gradient(
+              135deg,
+              rgba(3, 7, 18, 0.6),
+              rgba(7, 18, 33, 0.6)
+            );
+            border: 1px solid rgba(255, 255, 255, 0.03);
+          "
+        >
+          <!-- decorative airplane -->
+          <svg
+            class="absolute right-6 top-6 w-24 opacity-20 transform animate-fly"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+          >
+            <path d="M2 12L22 3L13 22L11 13L2 12Z" fill="url(#g)" />
+            <defs>
+              <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#FFB86B" />
+                <stop offset="1" stop-color="#FF7A59" />
+              </linearGradient>
+            </defs>
+          </svg>
+
+          <div class="md:flex gap-8 items-center">
+            <!-- left: hero text -->
+            <div class="md:flex-1 text-center md:text-left">
+              <h1
+                id="regTitle"
+                class="text-4xl md:text-5xl font-playfair mb-3 leading-tight"
+              >
+                VoyageFlow
+              </h1>
+              <p class="text-slate-300 max-w-xl mx-auto md:mx-0 mb-6">
+                Your interactive travel experience simulator — sign up and
+                explore curated guides, build an itinerary, and simulate a
+                booking. Fast, pretty, and completely client-side.
+              </p>
+
+              <ul
+                class="flex flex-wrap gap-3 justify-center md:justify-start mb-6"
+              >
+                <li
+                  class="px-3 py-2 bg-slate-900/30 rounded-full border border-slate-700 text-slate-200 text-sm"
+                >
+                  ✓ Smooth Scroll Blog
+                </li>
+                <li
+                  class="px-3 py-2 bg-slate-900/30 rounded-full border border-slate-700 text-slate-200 text-sm"
+                >
+                  ✓ Real-time Price Calc
+                </li>
+                <li
+                  class="px-3 py-2 bg-slate-900/30 rounded-full border border-slate-700 text-slate-200 text-sm"
+                >
+                  ✓ Custom Modals
+                </li>
+              </ul>
+            </div>
+
+            <!-- right: form card -->
+            <div class="md:w-[420px]">
+              <div
+                class="bg-gradient-to-b from-slate-900/60 to-slate-900/35 border border-slate-700 rounded-2xl p-6 shadow-xl"
+              >
+                <div class="mb-4 text-center">
+                  <div
+                    class="mx-auto w-16 h-16 rounded-full flex items-center justify-center bg-gradient-to-r from-amber-400 to-orange-500 text-slate-900 font-bold"
+                  >
+                    VF
+                  </div>
+                  <p class="text-slate-300 mt-2 text-sm">
+                    Start your voyage — no account required (simulation only)
+                  </p>
+                </div>
+
+                <form id="regForm" class="grid grid-cols-1 gap-3" novalidate>
+                  <div class="relative">
+                    <label class="sr-only">Full name</label>
+                    <div class="flex items-center gap-2">
+                      <!-- icon -->
+                      <svg
+                        class="w-5 h-5 text-slate-400"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                      >
+                        <path
+                          d="M12 12c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM4 20v-1c0-2.76 5.33-4 8-4s8 1.24 8 4v1H4z"
+                          fill="currentColor"
+                        />
+                      </svg>
+                      <input
+                        id="name"
+                        name="name"
+                        type="text"
+                        minlength="2"
+                        required
+                        placeholder="Full name"
+                        class="w-full bg-transparent outline-none text-slate-100 placeholder-slate-400"
+                      />
+                    </div>
+                    <div
+                      class="err text-red-400 text-sm mt-1 min-h-[1rem]"
+                      id="nameErr"
+                    ></div>
+                  </div>
+
+                  <div class="relative">
+                    <label class="sr-only">Email</label>
+                    <div class="flex items-center gap-2">
+                      <svg class="w-5 h-5 text-slate-400">
+                        <path d="M2 6l10 7L22 6v12H2z" fill="currentColor" />
+                      </svg>
+                      <input
+                        id="email"
+                        name="email"
+                        type="email"
+                        required
+                        placeholder="you@domain.com"
+                        class="w-full bg-transparent outline-none text-slate-100 placeholder-slate-400"
+                      />
+                    </div>
+                    <div
+                      class="err text-red-400 text-sm mt-1 min-h-[1rem]"
+                      id="emailErr"
+                    ></div>
+                  </div>
+
+                  <div class="flex gap-3">
+                    <div class="flex-1">
+                      <label class="sr-only">Phone</label>
+                      <div class="flex items-center gap-2">
+                        <svg class="w-5 h-5 text-slate-400">
+                          <path
+                            d="M6 2h2l1 5H6zM17 2h2l-1 5h-2zM2 11c0 5 7 11 10 11s10-6 10-11V4H2v7z"
+                            fill="currentColor"
+                          />
+                        </svg>
+                        <input
+                          id="phone"
+                          name="phone"
+                          type="tel"
+                          maxlength="10"
+                          required
+                          placeholder="10 digits"
+                          class="w-full bg-transparent outline-none text-slate-100 placeholder-slate-400"
+                        />
+                      </div>
+                      <div
+                        class="err text-red-400 text-sm mt-1 min-h-[1rem]"
+                        id="phoneErr"
+                      ></div>
+                    </div>
+
+                    <div class="w-36">
+                      <label class="sr-only">PIN</label>
+                      <div class="flex items-center gap-2">
+                        <svg class="w-5 h-5 text-slate-400">
+                          <path
+                            d="M12 2L4 6v6c0 5 8 10 8 10s8-5 8-10V6l-8-4z"
+                            fill="currentColor"
+                          />
+                        </svg>
+                        <input
+                          id="pincode"
+                          name="pincode"
+                          type="text"
+                          maxlength="6"
+                          required
+                          placeholder="PIN"
+                          class="w-full bg-transparent outline-none text-slate-100 placeholder-slate-400"
+                        />
+                      </div>
+                      <div
+                        class="err text-red-400 text-sm mt-1 min-h-[1rem]"
+                        id="pinErr"
+                      ></div>
+                    </div>
+                  </div>
+
+                  <div class="flex gap-3 mt-2">
+                    <button
+                      type="button"
+                      id="clearReg"
+                      class="flex-1 px-4 py-2 rounded-xl border border-slate-700 text-sm text-slate-200 hover:bg-slate-800/40"
+                    >
+                      Clear
+                    </button>
+                    <button
+                      type="submit"
+                      class="flex-1 px-4 py-2 rounded-xl bg-gradient-to-r from-amber-400 to-orange-500 text-slate-900 font-semibold text-sm"
+                    >
+                      Get Started
+                    </button>
+                  </div>
+
+                  <p class="text-xs text-slate-400 mt-2 text-center">
+                    This is a front-end simulation — no data is stored
+                    permanently.
+                  </p>
+                </form>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- same registration modal as before (no change) -->
+        <div
+          id="regModal"
+          class="modal hidden"
+          role="dialog"
+          aria-modal="true"
+          aria-hidden="true"
+        >
+          <div class="modal-panel">
+            <h3 class="text-2xl font-semibold">Registration Successful 🎉</h3>
+            <p class="text-slate-300 mt-2">
+              Welcome to VoyageFlow — redirecting you to the travel blog...
+            </p>
+          </div>
+        </div>
+      </main>
+      <!-- ================= END ENHANCED PAGE 1 ================= -->
+
+      <!-- PAGE 2: Travel Blog -->
+      <section id="page-blog" class="view" aria-labelledby="blogTitle">
+        <div
+          class="sticky top-6 z-20 bg-slate-900/60 backdrop-blur-lg border border-slate-700/60 shadow-lg rounded-2xl p-4 mb-8 animate-fadeDown"
+        >
+          <nav class="flex gap-3 justify-center">
+            <a
+              href="#paris"
+              class="navlink px-4 py-2 rounded-xl hover:bg-slate-700/50 hover:scale-105 transition"
+              >Paris</a
+            >
+            <a
+              href="#tokyo"
+              class="navlink px-4 py-2 rounded-xl hover:bg-slate-700/50 hover:scale-105 transition"
+              >Tokyo</a
+            >
+            <a
+              href="#rome"
+              class="navlink px-4 py-2 rounded-xl hover:bg-slate-700/50 hover:scale-105 transition"
+              >Rome</a
+            >
+            <a
+              href="#bali"
+              class="navlink px-4 py-2 rounded-xl hover:bg-slate-700/50 hover:scale-105 transition"
+              >Bali</a
+            >
+            <a
+              href="#cairo"
+              class="navlink px-4 py-2 rounded-xl hover:bg-slate-700/50 hover:scale-105 transition"
+              >Cairo</a
+            >
+          </nav>
+        </div>
+
+        <section class="space-y-6">
+          <div
+            class="bg-gradient-to-br from-slate-900/60 to-slate-800/40 border border-slate-700/60 shadow-xl rounded-3xl p-8 backdrop-blur-sm animate-fadeIn"
+          >
+            <h1 id="blogTitle" class="text-4xl font-playfair mb-2">
+              Voyage Blog & Destination Showcase
+            </h1>
+            <p class="text-slate-300 text-lg">
+              Explore five stunning destinations. Use the floating navigation
+              bar to jump instantly.
+            </p>
+          </div>
+
+          <!-- posts -->
+          <article
+            id="paris"
+            class="post bg-slate-800/40 border border-slate-700/60 shadow-md rounded-3xl overflow-hidden backdrop-blur-sm hover:shadow-amber-500/10 transition-all duration-300 animate-slideUp"
+          >
+            <div class="md:flex">
+              <img
+                class="w-full md:w-1/2 h-56 object-cover"
+                src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=1600&auto=format&fit=crop&s=0b56b127b07b22485c9e76b8a6203a6e"
+                alt="Paris"
+              />
+              <div class="p-6">
+                <h2 class="text-2xl font-playfair mb-2">
+                  Paris — The City of Lights
+                </h2>
+                <p class="text-slate-300">
+                  Stroll along the Seine, visit the Louvre and savor the cafés.
+                  Paris offers art, romance, and world-class cuisine in every
+                  neighborhood.
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <article
+            id="tokyo"
+            class="post bg-slate-800/40 border border-slate-700/60 shadow-md rounded-3xl overflow-hidden backdrop-blur-sm hover:shadow-amber-500/10 transition-all duration-300 animate-slideUp"
+          >
+            <div class="md:flex">
+              <img
+                class="w-full md:w-1/2 h-56 object-cover"
+                src="https://images.unsplash.com/photo-1549693578-d683be217e58?q=80&w=1600&auto=format&fit=crop&s=c0c8d68d7a0a0f6ad5a3a5c7d9b3b8c0"
+                alt="Tokyo"
+              />
+              <div class="p-6">
+                <h2 class="text-2xl font-playfair mb-2">
+                  Tokyo — Neon & Tradition
+                </h2>
+                <p class="text-slate-300">
+                  From temples to tech, Tokyo blends history and modernity. Try
+                  street-food tours and evening neon walks.
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <article
+            id="rome"
+            class="post bg-slate-800/40 border border-slate-700/60 shadow-md rounded-3xl overflow-hidden backdrop-blur-sm hover:shadow-amber-500/10 transition-all duration-300 animate-slideUp"
+          >
+            <div class="md:flex">
+              <img
+                class="w-full md:w-1/2 h-56 object-cover"
+                src="https://images.unsplash.com/photo-1508051123996-69f8caf4891d?q=80&w=1600&auto=format&fit=crop&s=0bce1d0c194d6bea4c6bcd5d91b7e3c7"
+                alt="Rome"
+              />
+              <div class="p-6">
+                <h2 class="text-2xl font-playfair mb-2">
+                  Rome — The Eternal City
+                </h2>
+                <p class="text-slate-300">
+                  Walk through millennia of history. Enjoy piazzas, gelato, and
+                  architecture that tells stories at every corner.
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <article
+            id="bali"
+            class="post bg-slate-800/40 border border-slate-700/60 shadow-md rounded-3xl overflow-hidden backdrop-blur-sm hover:shadow-amber-500/10 transition-all duration-300 animate-slideUp"
+          >
+            <div class="md:flex">
+              <img
+                class="w-full md:w-1/2 h-56 object-cover"
+                src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1600&auto=format&fit=crop&s=a931a3b0e6f1c84c5b5f4c3c1a1f2b76"
+                alt="Bali"
+              />
+              <div class="p-6">
+                <h2 class="text-2xl font-playfair mb-2">
+                  Bali — Island of the Gods
+                </h2>
+                <p class="text-slate-300">
+                  Lush rice terraces, beaches, and spiritual culture — Bali is
+                  perfect for relaxation and cultural immersion.
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <article
+            id="cairo"
+            class="post bg-slate-800/40 border border-slate-700/60 shadow-md rounded-3xl overflow-hidden backdrop-blur-sm hover:shadow-amber-500/10 transition-all duration-300 animate-slideUp"
+          >
+            <div class="md:flex">
+              <img
+                class="w-full md:w-1/2 h-56 object-cover"
+                src="https://images.unsplash.com/photo-1649775827146-1d67524b9465?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                alt="Cairo"
+              />
+
+              <div class="p-6">
+                <h2 class="text-2xl font-playfair mb-2">
+                  Cairo — Where History Roars
+                </h2>
+                <p class="text-slate-300">
+                  Ancient monuments, lively bazaars, and Nile-side charm. Cairo
+                  is a rich tapestry that rewards the curious traveler.
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <div class="text-center mt-4">
+            <button
+              id="toCalcBtn"
+              class="px-6 py-3 rounded-full bg-gradient-to-r from-amber-400 to-orange-500 text-slate-900 font-semibold shadow-lg hover:shadow-amber-500/30 hover:scale-110 transition duration-300"
+            >
+              Proceed to Price Calculator
+            </button>
+          </div>
+        </section>
+      </section>
+
+      <!-- PAGE 3: Calculator -->
+      <section id="page-calc" class="view" aria-labelledby="calcTitle">
+        <div class="bg-slate-800/60 border border-slate-700 rounded-2xl p-6">
+          <h1 id="calcTitle" class="text-3xl font-playfair">
+            Trip Itinerary & Price Calculator
+          </h1>
+          <p class="text-slate-300 mt-2">
+            Select travel, food and activities. The total updates instantly.
+          </p>
+
+          <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- options -->
+            <div class="space-y-4">
+              <fieldset class="p-4 border border-slate-700 rounded-xl">
+                <legend class="px-2 text-slate-300">Travel Options</legend>
+                <label class="flex items-center justify-between gap-4 py-2">
+                  <div class="flex items-center gap-3">
+                    <input
+                      class="opt"
+                      type="checkbox"
+                      data-price="15000"
+                    /><span>Economy Flight</span>
+                  </div>
+                  <div class="text-amber-300 font-semibold">₹15,000</div>
+                </label>
+                <label class="flex items-center justify-between gap-4 py-2">
+                  <div class="flex items-center gap-3">
+                    <input
+                      class="opt"
+                      type="checkbox"
+                      data-price="35000"
+                    /><span>Business Flight</span>
+                  </div>
+                  <div class="text-amber-300 font-semibold">₹35,000</div>
+                </label>
+                <label class="flex items-center justify-between gap-4 py-2">
+                  <div class="flex items-center gap-3">
+                    <input class="opt" type="checkbox" data-price="5000" /><span
+                      >Train (AC)</span
+                    >
+                  </div>
+                  <div class="text-amber-300 font-semibold">₹5,000</div>
+                </label>
+              </fieldset>
+
+              <fieldset class="p-4 border border-slate-700 rounded-xl">
+                <legend class="px-2 text-slate-300">Food Packages</legend>
+                <label class="flex items-center justify-between gap-4 py-2">
+                  <div class="flex items-center gap-3">
+                    <input class="opt" type="checkbox" data-price="800" /><span
+                      >Local Food Tour</span
+                    >
+                  </div>
+                  <div class="text-amber-300 font-semibold">₹800</div>
+                </label>
+                <label class="flex items-center justify-between gap-4 py-2">
+                  <div class="flex items-center gap-3">
+                    <input class="opt" type="checkbox" data-price="1200" /><span
+                      >Gourmet Dinner</span
+                    >
+                  </div>
+                  <div class="text-amber-300 font-semibold">₹1,200</div>
+                </label>
+              </fieldset>
+
+              <fieldset class="p-4 border border-slate-700 rounded-xl">
+                <legend class="px-2 text-slate-300">Activities</legend>
+                <label class="flex items-center justify-between gap-4 py-2">
+                  <div class="flex items-center gap-3">
+                    <input class="opt" type="checkbox" data-price="500" /><span
+                      >City Walking Tour</span
+                    >
+                  </div>
+                  <div class="text-amber-300 font-semibold">₹500</div>
+                </label>
+                <label class="flex items-center justify-between gap-4 py-2">
+                  <div class="flex items-center gap-3">
+                    <input class="opt" type="checkbox" data-price="2000" /><span
+                      >Adventure Pack</span
+                    >
+                  </div>
+                  <div class="text-amber-300 font-semibold">₹2,000</div>
+                </label>
+                <label class="flex items-center justify-between gap-4 py-2">
+                  <div class="flex items-center gap-3">
+                    <input class="opt" type="checkbox" data-price="1200" /><span
+                      >Museum Pass</span
+                    >
+                  </div>
+                  <div class="text-amber-300 font-semibold">₹1,200</div>
+                </label>
+              </fieldset>
+            </div>
+
+            <!-- summary -->
+            <div>
+              <div
+                class="p-6 bg-gradient-to-b from-slate-900/50 to-slate-900/30 rounded-3xl border border-slate-700/60 shadow-2xl glass-card"
+              >
+                <div class="flex items-center justify-between">
+                  <h3 class="text-xl font-semibold">Trip Summary</h3>
+                  <div class="text-sm text-slate-400">Estimated</div>
+                </div>
+
+                <p class="text-slate-300 mt-2">
+                  Selected options will appear below and the total updates live.
+                </p>
+
+                <div
+                  id="selectedList"
+                  class="mt-4 text-slate-300/90 min-h-[5rem]"
+                ></div>
+
+                <div class="mt-6 flex items-baseline justify-between gap-4">
+                  <div class="text-slate-400">Total:</div>
+                  <div class="text-3xl font-bold tracking-tight">
+                    <span id="totalPrice" class="text-amber-300">₹0</span>
+                  </div>
+                </div>
+
+                <div class="mt-6 flex gap-3 justify-end">
+                  <button
+                    id="backToBlog"
+                    class="px-4 py-2 rounded-xl border border-slate-700 hover:bg-slate-800/60"
+                  >
+                    Back
+                  </button>
+                  <button
+                    id="confirmBtn"
+                    class="px-4 py-2 rounded-xl bg-gradient-to-r from-amber-400 to-orange-500 text-slate-900 font-semibold"
+                  >
+                    Confirm
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Confirm modal -->
+        <div
+          id="confirmModal"
+          class="modal hidden"
+          role="dialog"
+          aria-hidden="true"
+        >
+          <div class="modal-panel">
+            <h3 class="text-2xl font-semibold">Booking Simulated ✅</h3>
+            <p class="text-slate-300 mt-2">
+              Your simulated booking total is
+              <strong id="modalTotal" class="text-amber-300">₹0</strong>.
+            </p>
+            <div class="mt-4 flex justify-center">
+              <button
+                id="toThanks"
+                class="px-4 py-2 rounded-xl bg-amber-400 text-slate-900 font-semibold"
+              >
+                Continue
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PAGE 4: Confirmation -->
+      <section id="page-thanks" class="view" aria-labelledby="thanksTitle">
+        <div
+          class="bg-gradient-to-br from-slate-900/55 to-slate-800/30 border border-slate-700/50 rounded-3xl p-10 text-center shadow-2xl celebrate-card"
+        >
+          <div
+            class="mx-auto w-24 h-24 rounded-full flex items-center justify-center bg-amber-400 text-slate-900 font-bold text-2xl mb-4"
+          >
+            ✓
+          </div>
+          <h1 id="thanksTitle" class="text-3xl font-playfair">Thank you!</h1>
+          <p class="text-slate-300 mt-2">
+            Your booking has been simulated successfully. We hope you enjoyed
+            the VoyageFlow experience.
+          </p>
+
+          <p class="mt-4">
+            Summary total:
+            <strong id="finalTotal" class="text-amber-300">₹0</strong>
+          </p>
+
+          <div class="mt-6 flex justify-center gap-3">
+            <button
+              id="restartBtn"
+              class="px-4 py-2 rounded-xl bg-amber-400 text-slate-900 font-semibold"
+            >
+              Start Over
+            </button>
+          </div>
+
+          <p class="mt-2 text-slate-500 text-xs">
+            Made by <span class="text-amber-300">      Sudeepti</span> 
+            <span class="text-amber-300">Prakhar</span> 
+            <span class="text-amber-300">Nitesh</span> 
+            <span class="text-amber-300">Richa</span>
+          </p>
+        </div>
+      </section>
+    </div>
+
+    <!-- App JS -->
+    <script src="js/app.js"></script>
+  </body>
+</html>
+

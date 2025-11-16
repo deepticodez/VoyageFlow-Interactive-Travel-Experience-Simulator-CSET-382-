@@ -9,10 +9,10 @@ Live Demo:
 ## 👥 Team Members  
 **Team Name:** *VoyageFlow Team*  
 
-- **Sudeepti**  
-- **Prakhar**  
-- **Nitesh**  
-- **Richa**
+- **Sudeepti Gupta**  
+- **Prakhar Kedia**  
+- **Nitesh Goel**  
+- **Richa Yanamandra**
 
 ---
 
